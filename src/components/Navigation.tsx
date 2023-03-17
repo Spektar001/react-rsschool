@@ -1,16 +1,34 @@
 import React, { Component } from 'react';
 import './Navigation.css';
 import { NavLink } from 'react-router-dom';
+import { Props, State } from './Types/types';
 
-export default class Navigation extends Component {
+export default class Navigation extends Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        this.state = { text: location.pathname };
+    }
+    getTitleName() {
+        this.setState({ text: location.pathname });
+    }
     render() {
         return (
             <div className="navigation">
-                <span className="nav__page">Page:</span>
-                <NavLink className={({ isActive }) => (isActive ? 'nav__btn active' : ' nav__btn')} to="/">
+                <span className="nav__page">
+                    Page: {location.pathname === '/' ? 'home' : location.pathname === '/about' ? 'about' : ''}
+                </span>
+                <NavLink
+                    onClick={this.getTitleName.bind(this)}
+                    className={({ isActive }) => (isActive ? 'nav__btn active' : ' nav__btn')}
+                    to="/"
+                >
                     Home
                 </NavLink>
-                <NavLink className={({ isActive }) => (isActive ? 'nav__btn active' : ' nav__btn')} to="/about">
+                <NavLink
+                    onClick={this.getTitleName.bind(this)}
+                    className={({ isActive }) => (isActive ? 'nav__btn active' : ' nav__btn')}
+                    to="/about"
+                >
                     About us
                 </NavLink>
             </div>
