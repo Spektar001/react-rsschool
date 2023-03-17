@@ -1,0 +1,35 @@
+.navigation {
+    height: 50px;
+    background-color: #3F72AF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.nav__page {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.nav__btn {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffffff;
+    text-transform: uppercase;
+    background-color: #164f94;
+    border-radius: 5px;
+    padding: 5px;
+}
+.nav__btn:hover {
+    background-color: #3b8df1;
+}
+
+.active {
+    background-color: #3b8df1;
+}
+
+.inactive {
+    background-color: #164f94;
+}
