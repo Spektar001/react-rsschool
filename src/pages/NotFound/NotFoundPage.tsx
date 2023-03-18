@@ -3,6 +3,11 @@ import './NotFoundPage.css';
 
 export class NotFoundPage extends Component {
     render() {
-        return <h2 className="notfound">Oops! Not Found Page!</h2>;
+        return (
+            <div className="no-page">
+                <p className="no-page__image"></p>
+                <h2 className="no-page__text">Oops! There is no such page!</h2>
+            </div>
+        );
     }
 }
