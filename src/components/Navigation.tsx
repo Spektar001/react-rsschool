@@ -3,7 +3,7 @@ import './Navigation.css';
 import { NavLink } from 'react-router-dom';
 import { Props, State } from './Types/types';
 
-export default class Navigation extends Component<Props, State> {
+export class Navigation extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = { text: location.pathname };
@@ -13,7 +13,7 @@ export default class Navigation extends Component<Props, State> {
     }
     render() {
         return (
-            <div className="navigation">
+            <header className="navigation">
                 <span className="nav__page">
                     Page: {location.pathname === '/' ? 'home' : location.pathname === '/about' ? 'about' : ''}
                 </span>
@@ -31,7 +31,7 @@ export default class Navigation extends Component<Props, State> {
                 >
                     About us
                 </NavLink>
-            </div>
+            </header>
         );
     }
 }

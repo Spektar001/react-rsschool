@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import Navigation from './Navigation';
-import ProductsPage from '../pages/HomePage';
-import AboutPage from '../pages/AboutPage';
-import NotFoundPage from '../pages/NotFoundPage';
-import Footer from './Footer';
+import { Navigation } from './Navigation';
+import { ProductsPage } from '../pages/Home/HomePage';
+import { AboutPage } from '../pages/About/AboutPage';
+import { NotFoundPage } from '../pages/NotFound/NotFoundPage';
+import { Footer } from './Footer/Footer';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {

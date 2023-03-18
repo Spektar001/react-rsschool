@@ -1,10 +1,10 @@
 import React, { ChangeEvent, Component } from 'react';
 import './HomePage.css';
-import { Product } from '../components/Product';
-import { products } from '../components/data/productsData';
+import { Product } from '../../components/Product';
+import { products } from '../../components/data/productsData';
 import { State, Props } from 'components/Types/types';
 
-export default class ProductsPage extends Component<Props, State> {
+export class ProductsPage extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = { text: '' };
@@ -13,7 +13,7 @@ export default class ProductsPage extends Component<Props, State> {
 
     changeHandler(event: ChangeEvent<HTMLInputElement>) {
         this.setState({ text: event.target.value });
-        localStorage.setItem('input', JSON.stringify(event.target.value));
+        localStorage.setItem('inputText', JSON.stringify(event.target.value));
     }
 
     render() {
@@ -22,8 +22,8 @@ export default class ProductsPage extends Component<Props, State> {
                 <div className="home__search_box">
                     <input
                         value={
-                            localStorage.getItem('input') !== null
-                                ? JSON.parse(localStorage.getItem('input') || '')
+                            localStorage.getItem('inputText') !== null
+                                ? JSON.parse(localStorage.getItem('inputText') || '')
                                 : this.state.text
                         }
                         onChange={this.changeHandler}

@@ -16,5 +16,5 @@ export interface State {
 }
 
 export interface Props {
-    children?: React.ReactNode;
+    children?: React.ReactNode | React.ReactChild;
 }
