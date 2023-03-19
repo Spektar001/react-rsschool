@@ -1,30 +1,30 @@
-{
-  "parser": "@typescript-eslint/parser",
-  "extends": [
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended"
-  ],
-  "env": {
-    "browser": true,
-    "es6": true,
-    "jest": true,
-    "node": true
+module.exports = {
+  env: {
+    browser: true,
+    jest: true,
+    node: true,
+    es6: true,
   },
-  "root": true,
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+  extends: [
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'prettier',
+    'plugin:react-hooks/recommended',
+  ],
+  overrides: [],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json',
+    ecmaFeatures: {
+      jsx: true
     },
-    "ecmaVersion": "latest",
-		"sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint", "react", "prettier", "react-hooks"
-  ],
-  "rules": {
+  plugins: ['react', '@typescript-eslint', 'prettier', "react-hooks"],
+  rules: {
+    'react/react-in-jsx-scope': 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "comma-dangle": ["error", "only-multiline"],
@@ -42,10 +42,11 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off"
   },
-  "settings": {
-    "react": {
-      "pragma": "React",
-      "version": "detect"
+  root: true,
+  settings: {
+    react: {
+      pragma: "React",
+      version: "detect"
     }
   }
-}
+};
