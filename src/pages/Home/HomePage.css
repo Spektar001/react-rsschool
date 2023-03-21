@@ -14,22 +14,6 @@
     width: 100%;
 }
 
-.home__input {
-    border-radius: 5px;
-    width: 30%;
-    height: 30px;
-    padding: 0 10px;
-    font-size: 1rem;
-    border: 1px solid #D0CFCE;
-    outline: none;
-}
-
-.home__input:focus{
-    border: 1px solid #164f94;
-    transition: 0.35s ease;
-    color: #164f94;
-}
-
 .home__btn {
     font-size: 1.2rem;
     font-weight: 700;
