@@ -9,6 +9,9 @@ export class ProductsPage extends Component {
     return (
       <div className="home">
         <div className="home__search_box">
+          <button data-testid="add__card" className="home__btn">
+            add card
+          </button>
           <Search />
           <button data-testid="find" className="home__btn">
             find
