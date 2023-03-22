@@ -6,6 +6,7 @@ import { ProductsPage } from '../pages/Home/HomePage';
 import { AboutPage } from '../pages/About/AboutPage';
 import { NotFoundPage } from '../pages/NotFound/NotFoundPage';
 import { Footer } from './Footer/Footer';
+import Forms from '../pages/Forms/Forms';
 
 export function App() {
   return (
@@ -14,6 +15,7 @@ export function App() {
       <Routes>
         <Route path="/" element={<ProductsPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/forms" element={<Forms />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
