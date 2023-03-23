@@ -10,7 +10,7 @@ export default class RadioInput extends Component<Props> {
     return (
       <div>
         <label>
-          <span> YES</span>
+          <span>YES</span>
           <input
             defaultChecked
             ref={this.props.inputYes}
@@ -21,7 +21,7 @@ export default class RadioInput extends Component<Props> {
           />
         </label>
         <label>
-          <span> NO</span>
+          <span>NO</span>
           <input
             value="NO"
             ref={this.props.inputNo}

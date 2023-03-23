@@ -1,31 +1,26 @@
 import React, { Component } from 'react';
 import './CardsItem.css';
-import image1 from '../../../assets/data-img/item_1.jpg'; //временно
+import { FormProduct as Props} from '../Forms';
 
-export default class CardsItem extends Component {
+
+export default class CardsItem extends Component<Props> {
+  constructor(props: Props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="cards__item">
-        <div className="cards__date">23-03-2023</div>
-        <div className="cards__category">MEN'S CLOTHING</div>
-        <img className="cards__img" src={image1} alt="qwe" />
-        <div className="cards__title">Fjallraven - Foldsack No. 1</div>
-        <div className="cards__not-robot">I'm not ROBOT: Made by Human</div>
-        <div className="cards__sale">Sale: 50%</div>
-        <div className="cards__price">123$</div>
+        <div className="cards__date">{this.props.date}</div>
+        <div className="cards__category">{this.props.category}</div>
+        <div className="cards__img" style={{ backgroundImage: `url(${this.props.image})` }}></div>
+        <div className="cards__title">{this.props.title}</div>
+        <div className="cards__not-robot">
+          I'm not ROBOT: {this.props.norobot ? 'Made by Human' : ''}
+        </div>
+        <div className="cards__sale">Sale: {this.props.sale ? '50%' : '0%'}</div>
+        <div className="cards__price">{this.props.price}$</div>
       </div>
     );
   }
-}
-
-{
-  /* <div className="cards__item">
-<div className="cards__date">{this.props.card.date}</div>
-<div className="cards__category">{this.props.card.category}</div>
-<img className="cards__img" src={this.props.card.image} alt={this.props.card.title} />
-<div className="cards__title">{this.props.card.title}</div>
-<div className="cards__not-robot">I'm not ROBOT: Made by Human</div>
-<div className="cards__sale">Sale:50%</div>
-<div className="cards__price">{this.props.card.price}$</div>
-</div> */
 }

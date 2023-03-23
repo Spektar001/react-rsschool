@@ -7,8 +7,17 @@ import SelectInput from '../inputs/SelectInput';
 import CheckInput from '../inputs/CheckInput';
 import RadioInput from '../inputs/RadioInput';
 import FileInput from '../inputs/FileInput';
+import { FormProduct } from '../Forms';
 
-export default class FormItem extends Component {
+interface Props {
+  updateCards: (card: FormProduct) => void;
+}
+
+export default class FormItem extends Component<Props> {
+  constructor(props: Props) {
+    super(props);
+  }
+
   dateInput: React.RefObject<HTMLInputElement> = React.createRef();
   selectInput: React.RefObject<HTMLSelectElement> = React.createRef();
   fileInput: React.RefObject<HTMLInputElement> = React.createRef();
@@ -18,29 +27,47 @@ export default class FormItem extends Component {
   radioInputNo: React.RefObject<HTMLInputElement> = React.createRef();
   priceInput: React.RefObject<HTMLInputElement> = React.createRef();
 
+  newCard = () => {
+    const card = {
+      date: this.dateInput.current?.value as string,
+      category: this.selectInput.current?.value as string,
+      image:
+        this.fileInput.current !== null &&
+        this.fileInput.current.files !== null &&
+        URL.createObjectURL(this.fileInput.current.files[0]),
+      title: this.nameInput.current?.value as string,
+      norobot: this.checkInput.current?.checked as boolean,
+      sale: this.radioInputYes.current?.checked
+        ? (this.radioInputYes.current?.value as string)
+        : (this.radioInputNo.current?.value as string),
+      price: this.priceInput.current?.value as string,
+    };
+
+    this.props.updateCards(card);
+  };
+
   addCardBtn = () => {
-    this.nameInput.current?.value;
-    this.priceInput.current?.value;
-    this.dateInput.current?.value;
-    this.selectInput.current?.value;
-    this.radioInputYes.current?.value;
-    this.radioInputNo.current?.value;
-    this.fileInput.current?.value;
-    this.checkInput.current?.value;
-    console.log(this.nameInput.current?.value);
-    console.log(this.priceInput.current?.value);
-    console.log(this.dateInput.current?.value);
-    console.log(this.selectInput.current?.value);
+    console.log('дата:', this.dateInput.current?.value);
+    console.log('категория:', this.selectInput.current?.value);
     console.log(
+      'картинка:',
+      this.fileInput.current !== null &&
+        this.fileInput.current.files !== null &&
+        URL.createObjectURL(this.fileInput.current.files[0])
+    );
+    console.log('название:', this.nameInput.current?.value);
+    console.log('я не робот:', this.checkInput.current?.checked);
+    console.log(
+      'акция:',
       this.radioInputYes.current?.checked
         ? this.radioInputYes.current?.value
         : this.radioInputNo.current?.value
     );
-    console.log(this.fileInput.current?.value);
-    console.log('checkbox', this.checkInput.current?.checked);
+    console.log('цена:', this.priceInput.current?.value);
+    this.newCard();
   };
 
-  render(): React.ReactNode {
+  render() {
     return (
       <form className="form">
         <h2 className="form__title">Enter your details</h2>
