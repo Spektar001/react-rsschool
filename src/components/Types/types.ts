@@ -11,16 +11,6 @@ export interface IProduct {
   };
 }
 
-// export interface FormProduct {
-//   date: string;
-//   category: string;
-//   image: string | false;
-//   title: string;
-//   norobot: boolean;
-//   sale: string;
-//   price: number;
-// }
-
 export interface State {
   text: string;
 }

@@ -20,11 +20,11 @@
 
 .cards__date {
   margin-bottom: 10px;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .cards__category {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   text-transform: uppercase;
   font-weight: 500;
   color: white;
@@ -47,22 +47,33 @@
 
 .cards__title {
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   text-align: center;
 }
 
 .cards__not-robot {
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .cards__sale {
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .cards__price {
-  font-size: 1.5rem;
-  font-weight: 900;
+  display: flex;
   text-align: center;
+  gap: 5px;
+}
+
+.cards__price_sale {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.cards__price_nosale {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-decoration: line-through;
 }
