@@ -14,7 +14,8 @@
   border-radius: 10px;
   box-shadow: 0 4px 5px 0 gray;
   padding: 15px;
-  width: 25%;
+  max-width: 300px;
+  height: auto;
 }
 
 .cards__date {
@@ -37,8 +38,11 @@
 }
 
 .cards__img {
-  width: 60%;
-  height: auto;
+  height: 200px;
+  width: 180px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .cards__title {

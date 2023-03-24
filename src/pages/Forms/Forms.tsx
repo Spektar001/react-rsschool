@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Forms.css';
-import CardsItem from './Cards-item/CardsItem';
+import { FormItems } from './Form-item/FormItems';
 import FormItem from './Form-item/FormItem';
 import { Props } from 'components/Types/types';
 
@@ -32,22 +32,20 @@ export default class Forms extends Component<Props, FormState> {
     return (
       <div className="flex">
         <FormItem updateCards={this.updateCards} />
-        <div className="cards">
-          {this.state.card.length > 0 ? (
-            <CardsItem card={this.state.card} />
-          ) : (
-            <p
-              style={{
-                textAlign: 'center',
-                fontWeight: '700',
-                fontSize: '1.3rem',
-                color: '#174F94',
-              }}
-            >
-              NO CARDS
-            </p>
-          )}
-        </div>
+        {this.state.card.length > 0 ? (
+          <FormItems cards={this.state.card} />
+        ) : (
+          <p
+            style={{
+              textAlign: 'center',
+              fontWeight: '700',
+              fontSize: '1.3rem',
+              color: '#174F94',
+            }}
+          >
+            NO CARDS
+          </p>
+        )}
       </div>
     );
   }

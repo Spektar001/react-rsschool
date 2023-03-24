@@ -84,7 +84,7 @@ export default class FormItem extends Component<Props> {
           Choice category: <SelectInput input={this.selectInput} />
         </div>
         <div className="field">
-          I'm not ROBOT: <CheckInput input={this.checkInput} />
+          You are a man? <CheckInput input={this.checkInput} />
         </div>
         <div className="field">
           <span>Sale:</span>

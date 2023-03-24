@@ -15,7 +15,7 @@ export default class RadioInput extends Component<Props> {
             defaultChecked
             ref={this.props.inputYes}
             name="sale"
-            value="YES"
+            value={Math.ceil(Math.random()*100)}
             className="form__rate"
             type="radio"
           />
@@ -23,7 +23,7 @@ export default class RadioInput extends Component<Props> {
         <label>
           <span>NO</span>
           <input
-            value="NO"
+            value="0%"
             ref={this.props.inputNo}
             name="sale"
             className="form__rate"
