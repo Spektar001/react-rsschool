@@ -30,11 +30,15 @@ export default class Forms extends Component<Props, FormState> {
     this.setState({ card: [...this.state.card, card], modalOpen: true });
   };
 
+  closeModal = () => {
+    this.setState({ modalOpen: false });
+  };
+
   render() {
     return (
       <div className="flex">
         <FormItem updateCards={this.updateCards} />
-        <SubmitModal isOpen={this.state.modalOpen} />
+        <SubmitModal isOpen={this.state.modalOpen} close={this.closeModal} />
         {this.state.card.length > 0 ? (
           <FormItems cards={this.state.card} />
         ) : (
@@ -42,8 +46,8 @@ export default class Forms extends Component<Props, FormState> {
             style={{
               textAlign: 'center',
               fontWeight: '700',
-              fontSize: '1.3rem',
-              color: '#174F94',
+              fontSize: '4rem',
+              color: 'rgb(193 45 45)',
             }}
           >
             NO CARDS
