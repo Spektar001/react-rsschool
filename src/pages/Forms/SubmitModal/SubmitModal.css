@@ -1,0 +1,25 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 200px;
+  background-color: #F9F7F7;
+  border-radius: 10px;
+  box-shadow: 0 4px 5px 0 gray;
+}
+
+.modal__title {
+  text-transform: uppercase;
+  color: #174F94;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.modal__text {
+  color: #174F94;
+  font-size: 1.5rem;
+  font-weight: 700;
+}

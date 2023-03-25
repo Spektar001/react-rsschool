@@ -3,6 +3,7 @@ import './Forms.css';
 import { FormItems } from './Form-item/FormItems';
 import FormItem from './Form-item/FormItem';
 import { Props } from 'components/Types/types';
+import SubmitModal from './SubmitModal/SubmitModal';
 
 export interface FormProduct {
   date: string;
@@ -16,22 +17,24 @@ export interface FormProduct {
 
 export interface FormState {
   card: FormProduct[];
+  modalOpen: boolean;
 }
 
 export default class Forms extends Component<Props, FormState> {
   constructor(props: Props) {
     super(props);
-    this.state = { card: [] };
+    this.state = { card: [], modalOpen: false };
   }
 
   updateCards = (card: FormProduct) => {
-    this.setState({ card: [...this.state.card, card] });
+    this.setState({ card: [...this.state.card, card], modalOpen: true });
   };
 
   render() {
     return (
       <div className="flex">
         <FormItem updateCards={this.updateCards} />
+        <SubmitModal isOpen={this.state.modalOpen} />
         {this.state.card.length > 0 ? (
           <FormItems cards={this.state.card} />
         ) : (
