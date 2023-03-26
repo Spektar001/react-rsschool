@@ -95,3 +95,16 @@ describe('Button HOME', () => {
     expect(home).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('Button FORMS', () => {
+  it('click', async () => {
+    render(<Navigation />, { wrapper: BrowserRouter });
+    expect(screen.getByText('Forms')).toBeInTheDocument();
+    const user = userEvent.setup();
+    const forms = vi.spyOn(user, 'click');
+    const formsLink = screen.getByText(/Forms/i);
+
+    await user.click(formsLink);
+    expect(forms).toHaveBeenCalledTimes(1);
+  });
+});
