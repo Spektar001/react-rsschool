@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './HomePage.css';
 import { Product } from '../../components/Product';
 import products from '../../components/data/productsData';
-import Search from '../../components/Search/Search';
+import { Search } from '../../components/Search/Search';
 
 export class ProductsPage extends Component {
   render() {

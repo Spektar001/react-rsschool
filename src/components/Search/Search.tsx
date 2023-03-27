@@ -1,31 +1,24 @@
-import { Props, State } from 'components/Types/types';
-import React, { ChangeEvent, Component } from 'react';
+import React, { useState } from 'react';
 import './Search.css';
 
-export default class Search extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { text: localStorage.getItem('search') || '' };
-    this.changeHandler = this.changeHandler.bind(this);
+export const Search = () => {
+  const [value, setValue] = useState(localStorage.getItem('search') || '');
+
+  function componentWillUnmount(event: string) {
+    localStorage.setItem('search', event);
   }
 
-  componentWillUnmount() {
-    localStorage.setItem('search', this.state.text);
+  function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
+    setValue(event.target.value);
+    componentWillUnmount(event.target.value);
   }
-
-  changeHandler(event: ChangeEvent<HTMLInputElement>) {
-    this.setState({ text: event.target.value });
-    localStorage.setItem('search', event.target.value);
-  }
-  render() {
-    return (
-      <input
-        value={this.state.text}
-        onChange={this.changeHandler}
-        className="search"
-        type="text"
-        placeholder="Search..."
-      />
-    );
-  }
-}
+  return (
+    <input
+      value={value}
+      onChange={changeHandler}
+      className="search"
+      type="text"
+      placeholder="Search..."
+    />
+  );
+};
