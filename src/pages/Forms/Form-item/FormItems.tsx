@@ -1,5 +1,5 @@
 import React from 'react';
-import CardsItem from '../Cards-item/CardsItem';
+import { CardsItem } from '../Cards-item/CardsItem';
 import { FormProduct } from '../Forms';
 
 interface Props {
