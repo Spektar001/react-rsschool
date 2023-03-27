@@ -24,7 +24,7 @@ export default class Search extends Component<Props, State> {
         onChange={this.changeHandler}
         className="search"
         type="text"
-        placeholder="Search..."
+        placeholder="Search...."
       />
     );
   }
