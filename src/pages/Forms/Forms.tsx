@@ -3,7 +3,7 @@ import './Forms.css';
 import { FormItems } from './Form-item/FormItems';
 import FormItem from './Form-item/FormItem';
 import { Props } from 'components/Types/types';
-import SubmitModal from './SubmitModal/SubmitModal';
+import { SubmitModal } from './SubmitModal/SubmitModal';
 
 export interface FormProduct {
   date: string;
