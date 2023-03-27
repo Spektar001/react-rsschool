@@ -6,7 +6,7 @@ interface Props {
   cards: FormProduct[];
 }
 
-export function FormItems(props: Props) {
+export const FormItems = (props: Props) => {
   const cards = props.cards.map((item, key) => (
     <CardsItem
       key={key}
@@ -21,4 +21,4 @@ export function FormItems(props: Props) {
   ));
 
   return <div className="cards">{cards}</div>;
-}
+};
