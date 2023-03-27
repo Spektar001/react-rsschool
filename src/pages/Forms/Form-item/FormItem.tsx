@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './FormItem.css';
-import NameInput from '../inputs/NameInput';
-import PriceInput from '../inputs/PriceInput';
-import DateInput from '../inputs/DateInput';
-import SelectInput from '../inputs/SelectInput';
+import { NameInput } from '../inputs/NameInput';
+import { PriceInput } from '../inputs/PriceInput';
+import { DateInput } from '../inputs/DateInput';
+import { SelectInput } from '../inputs/SelectInput';
 import { CheckInput } from '../inputs/CheckInput';
-import RadioInput from '../inputs/RadioInput';
-import FileInput from '../inputs/FileInput';
+import { RadioInput } from '../inputs/RadioInput';
+import { FileInput } from '../inputs/FileInput';
 import { FormProduct } from '../Forms';
 
 interface Props {
