@@ -18,9 +18,6 @@ export const PriceInput = (props: Props) => {
         })}
       />
       ${props.errors.price && <span className="invalidText">{props.errors.price.message}</span>}
-      {/* <span className="invalidText" style={{ opacity: !props.isValid ? '1' : '0' }}>
-        *Please enter a price!
-      </span> */}
     </label>
   );
 };

@@ -18,9 +18,6 @@ export const CheckInput = (props: Props) => {
         })}
       />
       {props.errors.norobot && <span className="invalidText">{props.errors.norobot.message}</span>}
-      {/* <span className="invalidText" style={{ opacity: !props.isValid ? '1' : '0' }}>
-        *Please verify that you are human!
-      </span> */}
     </label>
   );
 };

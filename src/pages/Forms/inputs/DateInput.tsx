@@ -18,9 +18,6 @@ export const DateInput = (props: Props) => {
         })}
       />
       {props.errors.date && <span className="invalidText">{props.errors.date.message}</span>}
-      {/* <span className="invalidText" style={{ opacity: !props.isValid ? '1' : '0' }}>
-        *Please enter a date!
-      </span> */}
     </label>
   );
 };

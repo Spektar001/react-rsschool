@@ -19,9 +19,6 @@ export const FileInput = (props: Props) => {
         })}
       />
       {props.errors.image && <span className="invalidText">{props.errors.image.message}</span>}
-      {/* <span className="invalidText" style={{ opacity: !props.isValid ? '1' : '0' }}>
-        *Please upload a photo!
-      </span> */}
     </label>
   );
 };

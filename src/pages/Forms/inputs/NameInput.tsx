@@ -18,9 +18,6 @@ export const NameInput = (props: Props) => {
         })}
       />
       {props.errors.title && <span className="invalidText">{props.errors.title.message}</span>}
-      {/* <span className="invalidText" style={{ opacity: !props.isValid ? '1' : '0' }}>
-        *Please enter a product name!
-      </span> */}
     </label>
   );
 };
