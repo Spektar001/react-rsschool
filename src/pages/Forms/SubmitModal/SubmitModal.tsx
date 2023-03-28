@@ -3,7 +3,7 @@ import React from 'react';
 
 interface Props {
   isOpen: boolean;
-  close: () => void;
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const SubmitModal = (props: Props) => {
@@ -12,7 +12,7 @@ export const SubmitModal = (props: Props) => {
       <div className={`modal__content ${props.isOpen && 'show__modal'}`}>
         <p className="modal__title">congratulations!</p>
         <p className="modal__text">Your data is saved</p>
-        <button className="modal__btn" onClick={props.close}>
+        <button className="modal__btn" onClick={() => props.closeModal(false)}>
           CLOSE
         </button>
       </div>

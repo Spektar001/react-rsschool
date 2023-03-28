@@ -1,17 +1,26 @@
 import React from 'react';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { FormInputs } from '../Form-item/FormItem';
 
 type Props = {
-  input: React.RefObject<HTMLInputElement>;
-  isValid: boolean;
+  register: UseFormRegister<FormInputs>;
+  errors: FieldErrors<FormInputs>;
 };
 
 export const CheckInput = (props: Props) => {
   return (
     <label>
-      <input className="form__not-robot" placeholder="4" type="checkbox" ref={props.input} />
-      <span className="invalidText" style={{ opacity: !props.isValid ? '1' : '0' }}>
+      <input
+        className="form__not-robot"
+        type="checkbox"
+        {...props.register('norobot', {
+          required: '*Please verify that you are human!',
+        })}
+      />
+      {props.errors.norobot && <span className="invalidText">{props.errors.norobot.message}</span>}
+      {/* <span className="invalidText" style={{ opacity: !props.isValid ? '1' : '0' }}>
         *Please verify that you are human!
-      </span>
+      </span> */}
     </label>
   );
 };

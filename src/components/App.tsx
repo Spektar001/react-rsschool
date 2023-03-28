@@ -6,7 +6,7 @@ import { ProductsPage } from '../pages/Home/HomePage';
 import { AboutPage } from '../pages/About/AboutPage';
 import { NotFoundPage } from '../pages/NotFound/NotFoundPage';
 import { Footer } from './Footer/Footer';
-import Forms from '../pages/Forms/Forms';
+import { Forms } from '../pages/Forms/Forms';
 
 export function App() {
   return (
