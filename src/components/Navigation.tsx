@@ -1,53 +1,47 @@
-import React, { Component } from 'react';
 import './Navigation.css';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Props, State } from './Types/types';
 
-export default class Navigation extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { text: location.pathname };
+export const Navigation = () => {
+  const [, setPathname] = useState('');
+
+  function getTitleName() {
+    setPathname(location.pathname);
   }
 
-  getTitleName() {
-    this.setState({ text: location.pathname });
-  }
-
-  render() {
-    return (
-      <header className="navigation">
-        <span className="nav__page">
-          Page:{' '}
-          {location.pathname === '/'
-            ? 'home'
-            : location.pathname === '/about'
-            ? 'about'
-            : location.pathname === '/forms'
-            ? 'forms'
-            : ''}
-        </span>
-        <NavLink
-          onClick={this.getTitleName.bind(this)}
-          className={({ isActive }) => (isActive ? 'nav__btn active' : 'nav__btn')}
-          to="/"
-        >
-          Home
-        </NavLink>
-        <NavLink
-          onClick={this.getTitleName.bind(this)}
-          className={({ isActive }) => (isActive ? 'nav__btn active' : 'nav__btn')}
-          to="/about"
-        >
-          About us
-        </NavLink>
-        <NavLink
-          onClick={this.getTitleName.bind(this)}
-          className={({ isActive }) => (isActive ? 'nav__btn active' : 'nav__btn')}
-          to="/forms"
-        >
-          Forms
-        </NavLink>
-      </header>
-    );
-  }
-}
+  return (
+    <header className="navigation">
+      <span className="nav__page">
+        Page:
+        {location.pathname === '/'
+          ? ' home'
+          : location.pathname === '/about'
+          ? ' about'
+          : location.pathname === '/forms'
+          ? ' forms'
+          : ''}
+      </span>
+      <NavLink
+        onClick={getTitleName}
+        className={({ isActive }) => (isActive ? 'nav__btn active' : 'nav__btn')}
+        to="/"
+      >
+        Home
+      </NavLink>
+      <NavLink
+        onClick={getTitleName}
+        className={({ isActive }) => (isActive ? 'nav__btn active' : 'nav__btn')}
+        to="/about"
+      >
+        About us
+      </NavLink>
+      <NavLink
+        onClick={getTitleName}
+        className={({ isActive }) => (isActive ? 'nav__btn active' : 'nav__btn')}
+        to="/forms"
+      >
+        Forms
+      </NavLink>
+    </header>
+  );
+};
