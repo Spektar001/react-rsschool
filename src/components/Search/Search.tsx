@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './Search.css';
 
 export const Search = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(localStorage.getItem('search') || '');
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     setValue(event.target.value);
-    localStorage.setItem('search', event.target.value);
   }
 
   useEffect(() => {
-    setValue(localStorage.getItem('search') || '');
-  }, []);
+    return () => {
+      localStorage.setItem('search', value);
+    };
+  });
 
   return (
     <input
