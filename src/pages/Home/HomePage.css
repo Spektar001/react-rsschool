@@ -31,5 +31,20 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
+}
+
+.loader {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.error {
+  text-align: center;
+  font-size: 2rem;
+  color: #C12D2D;
+  font-weight: 500;
+  margin-bottom: 10px;
 }

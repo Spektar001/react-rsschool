@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { NotFoundPage } from './pages/NotFound/NotFoundPage';
 import { AboutPage } from './pages/About/AboutPage';
 import { ProductsPage } from './pages/Home/HomePage';
-import Navigation from './components/Navigation';
+import { Navigation } from './components/Navigation';
 
 describe('NotFoundPage', () => {
   it('Renders not found page', () => {
