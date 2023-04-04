@@ -12,7 +12,7 @@ export const ProductsPage = () => {
   const [error, setError] = useState('');
   const [search, setSearch] = useState(localStorage.getItem('search') || '');
 
-  const fetchItems = useCallback(async() => {
+  const fetchItems = useCallback(async () => {
     try {
       setError('');
       setLoading(true);

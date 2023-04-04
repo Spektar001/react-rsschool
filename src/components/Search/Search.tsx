@@ -14,8 +14,7 @@ export const Search = (props: Props) => {
   }
 
   const handleEnterPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    event.key === 'Enter';
-    props.setSearch(value);
+    event.key === 'Enter' && props.setSearch(value);
   };
 
   useEffect(() => {
