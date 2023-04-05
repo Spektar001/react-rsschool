@@ -1,0 +1,14 @@
+.home__modal {
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  background-color: #ffffff;
+  padding: 10px;
+  box-shadow: 0 4px 50px 10px #174F94;
+  border-radius: 10px;
+}
+
+.home__modal_content {
+  display: flex;
+  gap: 10px;
+}

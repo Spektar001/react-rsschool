@@ -5,6 +5,7 @@ import axios, { AxiosError } from 'axios';
 import { Search } from '../../components/Search/Search';
 import { ACCESS_KEY } from '../../components/Key/key';
 import { Data } from '../../components/Types/types';
+import { HomeModal } from './HomeModal/HomeModal';
 
 export const ProductsPage = () => {
   const [products, setProducts] = useState<Data[]>([]);
@@ -42,6 +43,7 @@ export const ProductsPage = () => {
           <Product product={product} key={key} />
         ))}
       </div>
+      <HomeModal />
     </div>
   );
 };

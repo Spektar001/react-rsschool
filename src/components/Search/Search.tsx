@@ -10,16 +10,23 @@ export const Search = (props: Props) => {
 
   function inputHandler(event: React.ChangeEvent<HTMLInputElement>) {
     setValue(event.target.value);
-    localStorage.setItem('search', event.target.value);
   }
 
-  const handleEnterPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    event.key === 'Enter' && props.setSearch(value);
+  const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if(event.key === 'Enter') {
+      localStorage.setItem('search', value);
+      props.setSearch(value);
+    }
+  };
+
+  const handleFind = () => {
+    localStorage.setItem('search', value);
+    props.setSearch(value);
   };
 
   useEffect(() => {
     return () => {
-      localStorage.setItem('search', localStorage.getItem('search') || '');
+      setValue(localStorage.getItem('search') || '');
     };
   }, []);
 
@@ -31,9 +38,9 @@ export const Search = (props: Props) => {
         className="search"
         type="search"
         placeholder="Search..."
-        onKeyDown={handleEnterPress}
+        onKeyDown={handleEnter}
       />
-      <button data-testid="find" onClick={() => props.setSearch(value)} className="home__btn">
+      <button data-testid="find" onClick={handleFind} className="home__btn">
         find
       </button>
     </div>
