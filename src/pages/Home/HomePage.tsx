@@ -13,6 +13,11 @@ export const ProductsPage = () => {
   const [error, setError] = useState('');
   const [search, setSearch] = useState(localStorage.getItem('search') || '');
 
+  const [pendingModal, setPendingModal] = useState(true);
+  const [itemID, setItemID] = useState('');
+  const [modalItem, setModalItem] = useState<Data>();
+  const [modalItemOpen, setModalItemOpen] = useState(false);
+
   const fetchItems = useCallback(async () => {
     try {
       setError('');
@@ -33,6 +38,38 @@ export const ProductsPage = () => {
     fetchItems();
   }, [fetchItems]);
 
+  const fetchModalItem = useCallback(async () => {
+    try {
+      setError('');
+      const response = await axios.get(
+        `https://api.unsplash.com/photos/${itemID}?client_id=${ACCESS_KEY}`
+      );
+      setModalItem(response.data);
+    } catch (e: unknown) {
+      const error = e as AxiosError;
+      setLoading(false);
+      setError(error.message);
+    }
+  }, [itemID]);
+
+  useEffect(() => {
+    fetchModalItem();
+  }, [fetchModalItem]);
+
+  const openModal = (id: string) => {
+    setItemID(id);
+    setModalItemOpen(true);
+    setPendingModal(true);
+
+    setTimeout(() => {
+      setPendingModal(false);
+    }, 1000);
+  };
+
+  const closeModal = () => {
+    setModalItemOpen(false);
+  };
+
   return (
     <div className="home">
       <Search setSearch={setSearch} />
@@ -40,10 +77,15 @@ export const ProductsPage = () => {
       {error && <p className="error">{error}</p>}
       <div className="home__items">
         {products.map((product, key) => (
-          <Product product={product} key={key} />
+          <Product product={product} key={key} openModal={openModal} />
         ))}
       </div>
-      <HomeModal />
+      <HomeModal
+        modalItem={modalItem}
+        setModalItemOpen={modalItemOpen}
+        pendingModal={pendingModal}
+        closeModal={closeModal}
+      />
     </div>
   );
 };

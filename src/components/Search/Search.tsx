@@ -13,7 +13,7 @@ export const Search = (props: Props) => {
   }
 
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if(event.key === 'Enter') {
+    if (event.key === 'Enter') {
       localStorage.setItem('search', value);
       props.setSearch(value);
     }

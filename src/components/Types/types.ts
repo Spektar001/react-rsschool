@@ -22,8 +22,7 @@ export interface Props {
 export interface Data {
   id: string;
   likes: number;
-  description: string | null;
-  alt_description: string;
+  alt_description: string | null;
   color: string | null;
   urls: {
     raw: string;
@@ -33,7 +32,7 @@ export interface Data {
     thumb: string;
   };
   user: {
-    name: string;
-    location: string;
+    name: string | null;
+    location: string | null;
   };
 }
