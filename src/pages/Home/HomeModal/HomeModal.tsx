@@ -49,7 +49,7 @@ export const HomeModal = (props: ProductProps) => {
               </div>
             </div>
             <button className="closeModal" onClick={() => props.closeModal()}>
-              Close
+              X
             </button>
           </div>
         )}

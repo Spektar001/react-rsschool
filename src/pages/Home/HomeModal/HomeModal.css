@@ -30,10 +30,8 @@
 
 .homeModal__content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: 30px;
 }
 
 .homeModal__box {
