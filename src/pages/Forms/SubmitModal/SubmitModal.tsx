@@ -12,7 +12,11 @@ export const SubmitModal = (props: Props) => {
       <div className={`modal__content ${props.isOpen && 'show__modal'}`}>
         <p className="modal__title">congratulations!</p>
         <p className="modal__text">Your data is saved</p>
-        <button className="modal__btn" onClick={() => props.closeModal(false)}>
+        <button
+          role="formModalClose"
+          className="modal__btn"
+          onClick={() => props.closeModal(false)}
+        >
           CLOSE
         </button>
       </div>

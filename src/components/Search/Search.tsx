@@ -33,6 +33,7 @@ export const Search = (props: Props) => {
   return (
     <div className="home__search_box">
       <input
+        data-testid="search"
         value={value}
         onInput={inputHandler}
         className="search"

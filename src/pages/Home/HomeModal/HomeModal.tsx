@@ -12,6 +12,7 @@ interface ProductProps {
 export const HomeModal = (props: ProductProps) => {
   return (
     <div
+      role="backgroundClose"
       className={`homeModal__container ${props.setModalItemOpen && 'homeModal__container_open'}`}
       onClick={(event) => {
         if (event.target !== event.currentTarget) return;
@@ -48,7 +49,7 @@ export const HomeModal = (props: ProductProps) => {
                 </div>
               </div>
             </div>
-            <button className="closeModal" onClick={() => props.closeModal()}>
+            <button role="homeModalClose" className="closeModal" onClick={() => props.closeModal()}>
               X
             </button>
           </div>
