@@ -4,7 +4,7 @@ import { FormProduct as Props } from '../Forms';
 
 export const CardsItem = (props: Props) => {
   return (
-    <div className="cards__item">
+    <div role="form" className="cards__item">
       <div className="cards__date">{props.date}</div>
       <div className="cards__category">{props.category}</div>
       <div className="cards__img" style={{ backgroundImage: `url(${props.image})` }}></div>

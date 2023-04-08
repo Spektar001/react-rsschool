@@ -11,6 +11,8 @@ import { Search } from './components/Search/Search';
 import { SubmitModal } from './pages/Forms/SubmitModal/SubmitModal';
 import { HomeModal } from './pages/Home/HomeModal/HomeModal';
 import { testItems } from './components/data/testData';
+import { Product } from './components/Product';
+import { FormItems } from './pages/Forms/Form-item/FormItems';
 
 describe('NotFoundPage', () => {
   it('Renders not found page', () => {
@@ -113,6 +115,17 @@ describe('Form modal', function () {
   });
 });
 
+const homeModalProductsOpen = vi.fn();
+describe('Products tests', function () {
+  test('Product render', () => {
+    render(<Product product={testItems[0]} openModal={homeModalProductsOpen} />);
+
+    const button = screen.getByRole('openModal');
+    expect(button).toBeInTheDocument();
+    userEvent.click(button);
+  });
+});
+
 const homeModalClose = vi.fn();
 describe('Home modal', function () {
   test('Home modal render and button close', async () => {
@@ -161,5 +174,35 @@ describe('Home modal', function () {
 
     expect(screen.getByText(`${testItems[0].alt_description}`)).toBeInTheDocument();
     expect(screen.getByText(`${testItems[0].user.name}`)).toBeInTheDocument();
+  });
+});
+
+const testCardsItems = [
+  {
+    date: '20-12-2022',
+    category: 'jewelery',
+    image: 'image1',
+    title: 'title1',
+    norobot: false,
+    sale: 'YES',
+    price: '100',
+  },
+  {
+    date: '19-02-2023',
+    category: 'jewelery',
+    image: 'image2',
+    title: 'title2',
+    norobot: true,
+    sale: 'NO',
+    price: '1023',
+  },
+];
+
+describe('CardsItems tests', function () {
+  test('render CardsItems', () => {
+    render(<FormItems cards={testCardsItems} />);
+
+    const cards = screen.getAllByRole('form');
+    expect(cards).toHaveLength(testCardsItems.length);
   });
 });

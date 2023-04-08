@@ -10,6 +10,7 @@ interface ProductProps {
 export const Product = (props: ProductProps) => {
   return (
     <div
+      role="openModal"
       className="product__item"
       onClick={() => {
         props.openModal(props.product.id);
