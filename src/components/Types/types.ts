@@ -36,3 +36,9 @@ export interface Data {
     location: string | null;
   };
 }
+
+export interface ServerRespones<T> {
+  total: number;
+  total_pages: number;
+  results: T[];
+}

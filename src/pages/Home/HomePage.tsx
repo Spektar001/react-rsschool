@@ -6,6 +6,7 @@ import { Search } from '../../components/Search/Search';
 import { ACCESS_KEY } from '../../components/Key/key';
 import { Data } from '../../components/Types/types';
 import { HomeModal } from './HomeModal/HomeModal';
+import { useSearchCardsQuery, useShowItemQuery } from '../../store/unsplashAPI/unsplash.api';
 
 export const ProductsPage = () => {
   const [products, setProducts] = useState<Data[]>([]);
@@ -17,6 +18,10 @@ export const ProductsPage = () => {
   const [itemID, setItemID] = useState('');
   const [modalItem, setModalItem] = useState<Data>();
   const [modalItemOpen, setModalItemOpen] = useState(false);
+
+  const { isLoading, isError, data } = useSearchCardsQuery('home');
+  const { isLoading: load, isError: err, data: item } = useShowItemQuery('R-LK3sqLiBw');
+  console.log(data);
 
   const fetchItems = useCallback(async () => {
     try {
@@ -44,6 +49,7 @@ export const ProductsPage = () => {
       const response = await axios.get(
         `https://api.unsplash.com/photos/${itemID}?client_id=${ACCESS_KEY}`
       );
+      console.log('response.data', response.data);
       setModalItem(response.data);
     } catch (e: unknown) {
       const error = e as AxiosError;
