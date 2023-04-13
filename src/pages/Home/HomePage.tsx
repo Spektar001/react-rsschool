@@ -1,75 +1,34 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './HomePage.css';
 import { Product } from '../../components/Product';
-import axios, { AxiosError } from 'axios';
 import { Search } from '../../components/Search/Search';
-import { ACCESS_KEY } from '../../components/Key/key';
 import { Data } from '../../components/Types/types';
 import { HomeModal } from './HomeModal/HomeModal';
-import { useSearchCardsQuery, useShowItemQuery } from '../../store/unsplashAPI/unsplash.api';
+import { useLazySearchItemQuery, useSearchCardsQuery } from '../../store/unsplashAPI/unsplash.api';
 
 export const ProductsPage = () => {
-  const [products, setProducts] = useState<Data[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
   const [search, setSearch] = useState(localStorage.getItem('search') || '');
-
   const [pendingModal, setPendingModal] = useState(true);
-  const [itemID, setItemID] = useState('');
-  const [modalItem, setModalItem] = useState<Data>();
   const [modalItemOpen, setModalItemOpen] = useState(false);
 
-  const { isLoading, isError, data } = useSearchCardsQuery('home');
-  const { isLoading: load, isError: err, data: item } = useShowItemQuery('R-LK3sqLiBw');
-  console.log(data);
+  const { isLoading, isError, data } = useSearchCardsQuery(search, {
+    refetchOnFocus: true,
+  });
+  // разобраться с useEffect
+  // useEffect(() => {
+  //   setSearch(search);
+  // }, [search]);
 
-  const fetchItems = useCallback(async () => {
-    try {
-      setError('');
-      setLoading(true);
-      const response = await axios.get(
-        `https://api.unsplash.com/search/photos?page=1&per_page=20&query=${search}&client_id=${ACCESS_KEY}`
-      );
-      setProducts(response.data.results);
-      setLoading(false);
-    } catch (e: unknown) {
-      const error = e as AxiosError;
-      setLoading(false);
-      setError(error.message);
-    }
-  }, [search]);
-
-  useEffect(() => {
-    fetchItems();
-  }, [fetchItems]);
-
-  const fetchModalItem = useCallback(async () => {
-    try {
-      setError('');
-      const response = await axios.get(
-        `https://api.unsplash.com/photos/${itemID}?client_id=${ACCESS_KEY}`
-      );
-      console.log('response.data', response.data);
-      setModalItem(response.data);
-    } catch (e: unknown) {
-      const error = e as AxiosError;
-      setLoading(false);
-      setError(error.message);
-    }
-  }, [itemID]);
-
-  useEffect(() => {
-    fetchModalItem();
-  }, [fetchModalItem]);
+  const [fetchRepos, { data: reposData }] = useLazySearchItemQuery();
 
   const openModal = (id: string) => {
-    setItemID(id);
+    fetchRepos(id);
     setModalItemOpen(true);
     setPendingModal(true);
 
     setTimeout(() => {
       setPendingModal(false);
-    }, 1000);
+    }, 500);
   };
 
   const closeModal = () => {
@@ -79,15 +38,15 @@ export const ProductsPage = () => {
   return (
     <div className="home">
       <Search setSearch={setSearch} />
-      {loading && <p className="loader">Loading...</p>}
-      {error && <p className="error">{error}</p>}
+      {isLoading && <p className="loader">Loading...</p>}
+      {isError && <p className="error">Error!</p>}
       <div className="home__items">
-        {products.map((product, key) => (
+        {data?.map((product: Data, key: React.Key) => (
           <Product product={product} key={key} openModal={openModal} />
         ))}
       </div>
       <HomeModal
-        modalItem={modalItem}
+        modalItem={reposData}
         setModalItemOpen={modalItemOpen}
         pendingModal={pendingModal}
         closeModal={closeModal}

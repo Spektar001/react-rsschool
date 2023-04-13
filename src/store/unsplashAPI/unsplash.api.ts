@@ -8,6 +8,7 @@ export const unsplashApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.unsplash.com/',
   }),
+  refetchOnFocus: true,
   endpoints: (build) => ({
     searchCards: build.query<Data[], string>({
       query: (search: string) => ({
@@ -15,13 +16,12 @@ export const unsplashApi = createApi({
       }),
       transformResponse: (response: ServerRespones<Data>) => response.results,
     }),
-    showItem: build.query<Data[], string>({
+    searchItem: build.query<Data, string>({
       query: (itemID: string) => ({
         url: `photos/${itemID}?client_id=${ACCESS_KEY}`,
       }),
-      transformResponse: (response: ServerRespones<Data>) => response.results,
     }),
   }),
 });
 
-export const { useSearchCardsQuery, useShowItemQuery } = unsplashApi;
+export const { useSearchCardsQuery, useLazySearchItemQuery } = unsplashApi;
