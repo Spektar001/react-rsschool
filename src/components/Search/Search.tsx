@@ -1,34 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useAppDispatch } from '../../store/hooks';
+import { setSearch } from '../../store/searchSlice';
 import './Search.css';
 
-type Props = {
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
-};
-
-export const Search = (props: Props) => {
+export const Search = () => {
+  const dispatch = useAppDispatch();
   const [value, setValue] = useState('');
 
-  function inputHandler(event: React.ChangeEvent<HTMLInputElement>) {
+  const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
-  }
+  };
 
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      localStorage.setItem('search', value);
-      props.setSearch(value);
+      dispatch(setSearch(value));
     }
   };
 
   const handleFind = () => {
-    localStorage.setItem('search', value);
-    props.setSearch(value);
+    dispatch(setSearch(value));
   };
-
-  useEffect(() => {
-    return () => {
-      setValue(localStorage.getItem('search') || '');
-    };
-  }, []);
 
   return (
     <div className="home__search_box">

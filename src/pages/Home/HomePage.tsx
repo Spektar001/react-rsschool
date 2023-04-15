@@ -5,19 +5,17 @@ import { Search } from '../../components/Search/Search';
 import { Data } from '../../components/Types/types';
 import { HomeModal } from './HomeModal/HomeModal';
 import { useLazySearchItemQuery, useSearchCardsQuery } from '../../store/unsplashAPI/unsplash.api';
+import { useAppSelector } from '../../store/hooks';
 
 export const ProductsPage = () => {
-  const [search, setSearch] = useState(localStorage.getItem('search') || '');
+  const value = useAppSelector((state) => state.searchSlice.value);
+
   const [pendingModal, setPendingModal] = useState(true);
   const [modalItemOpen, setModalItemOpen] = useState(false);
 
-  const { isLoading, isError, data } = useSearchCardsQuery(search, {
+  const { isLoading, isError, data } = useSearchCardsQuery(value, {
     refetchOnFocus: true,
   });
-  // разобраться с useEffect
-  // useEffect(() => {
-  //   setSearch(search);
-  // }, [search]);
 
   const [fetchRepos, { data: reposData }] = useLazySearchItemQuery();
 
@@ -37,7 +35,7 @@ export const ProductsPage = () => {
 
   return (
     <div className="home">
-      <Search setSearch={setSearch} />
+      <Search />
       {isLoading && <p className="loader">Loading...</p>}
       {isError && <p className="error">Error!</p>}
       <div className="home__items">
