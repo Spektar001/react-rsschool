@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
-import { useAppDispatch } from '../../store/hooks';
-import { setSearch } from '../../store/slice/searchSlice';
+import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { value, inputChange } from '../../store/slice/searchSlice';
 import './Search.css';
 
 export const Search = () => {
+  const searchInputValue = useAppSelector((state) => state.searchSlice.searchInputvalue);
   const dispatch = useAppDispatch();
-  const [value, setValue] = useState('');
 
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    dispatch(inputChange(event.target.value));
   };
 
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      dispatch(setSearch(value));
+      dispatch(value(searchInputValue));
     }
   };
 
   const handleFind = () => {
-    dispatch(setSearch(value));
+    dispatch(value(searchInputValue));
   };
 
   return (
     <div className="home__search_box">
       <input
         data-testid="search"
-        value={value}
+        value={searchInputValue}
         onInput={inputHandler}
         className="search"
         type="search"
