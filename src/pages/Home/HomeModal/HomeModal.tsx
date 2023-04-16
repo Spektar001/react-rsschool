@@ -1,59 +1,63 @@
 import React from 'react';
-import { Data } from 'components/Types/types';
 import './HomeModal.css';
+import { useAppSelector, useAppDispatch } from '../../../store/hooks';
+import { setModalClose } from '../../../store/slice/homeModalSlice';
+import { useSearchItemQuery } from '../../../store/unsplashAPI/unsplash.api';
 
-interface ProductProps {
-  modalItem: Data | undefined;
-  setModalItemOpen: boolean;
-  pendingModal: boolean;
-  closeModal: () => void;
-}
+export const HomeModal = () => {
+  const dispatch = useAppDispatch();
+  const itemID = useAppSelector((state) => state.homeModalSlice.id);
+  const isModalOpen = useAppSelector((state) => state.homeModalSlice.isModalOpen);
 
-export const HomeModal = (props: ProductProps) => {
+  const { isFetching, data } = useSearchItemQuery(itemID);
+
   return (
     <div
       role="backgroundClose"
-      className={`homeModal__container ${props.setModalItemOpen && 'homeModal__container_open'}`}
+      className={`homeModal__container ${isModalOpen && 'homeModal__container_open'}`}
       onClick={(event) => {
         if (event.target !== event.currentTarget) return;
-        props.closeModal();
+        dispatch(setModalClose());
       }}
     >
       <div className="homeModal">
-        {props.pendingModal ? (
-          'Loading...'
-        ) : (
-          <div className="homeModal__content">
-            <div className="homeModal__box">
-              <div
-                className="homeModal__image"
-                style={{
-                  backgroundImage: `url(${props.modalItem && props.modalItem.urls.regular})`,
-                }}
-              ></div>
-              <div className="homeModal__info">
-                <div className="homeModal__info_user">
-                  <p>{props.modalItem && (props.modalItem.user.name || 'Unknown username')}</p>
+        {isFetching
+          ? 'Loading...'
+          : data?.id && (
+              <div className="homeModal__content">
+                <div className="homeModal__box">
+                  <div
+                    className="homeModal__image"
+                    style={{
+                      backgroundImage: `url(${data && data.urls.regular})`,
+                    }}
+                  ></div>
+                  <div className="homeModal__info">
+                    <div className="homeModal__info_user">
+                      <p>{data && (data.user.name || 'Unknown username')}</p>
+                    </div>
+                    <p>
+                      <span className="info__category">Location:</span>{' '}
+                      {data && (data.user.location || 'Unknown location')}
+                    </p>
+                    <div className="homeModal__info_desc">
+                      <span className="info__category">About:</span>{' '}
+                      {data && (data.alt_description || 'Unknown description')}
+                    </div>
+                    <div className="homeModal__info_likes">
+                      <span className="info__category">Likes:</span> {data && data.likes}❤️
+                    </div>
+                  </div>
                 </div>
-                <p>
-                  <span className="info__category">Location:</span>{' '}
-                  {props.modalItem && (props.modalItem.user.location || 'Unknown location')}
-                </p>
-                <div className="homeModal__info_desc">
-                  <span className="info__category">About:</span>{' '}
-                  {props.modalItem && (props.modalItem.alt_description || 'Unknown description')}
-                </div>
-                <div className="homeModal__info_likes">
-                  <span className="info__category">Likes:</span>{' '}
-                  {props.modalItem && props.modalItem.likes}❤️
-                </div>
+                <button
+                  role="homeModalClose"
+                  className="closeModal"
+                  onClick={() => dispatch(setModalClose())}
+                >
+                  X
+                </button>
               </div>
-            </div>
-            <button role="homeModalClose" className="closeModal" onClick={() => props.closeModal()}>
-              X
-            </button>
-          </div>
-        )}
+            )}
       </div>
     </div>
   );

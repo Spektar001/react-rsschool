@@ -24,4 +24,4 @@ export const unsplashApi = createApi({
   }),
 });
 
-export const { useSearchCardsQuery, useLazySearchItemQuery } = unsplashApi;
+export const { useSearchCardsQuery, useSearchItemQuery } = unsplashApi;
