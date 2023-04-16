@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../store/hooks';
-import { setSearch } from '../../store/searchSlice';
+import { setSearch } from '../../store/slice/searchSlice';
 import './Search.css';
 
 export const Search = () => {

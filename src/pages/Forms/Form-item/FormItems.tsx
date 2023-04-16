@@ -1,13 +1,11 @@
 import React from 'react';
 import { CardsItem } from '../Cards-item/CardsItem';
-import { FormProduct } from '../Forms';
+import { useAppSelector } from '../../../store/hooks';
 
-interface Props {
-  cards: FormProduct[];
-}
+export const FormItems = () => {
+  const formCards = useAppSelector((state) => state.formSlice.form);
 
-export const FormItems = (props: Props) => {
-  const cards = props.cards.map((item, key) => (
+  const cards = formCards.map((item, key) => (
     <CardsItem
       key={key}
       date={item.date}

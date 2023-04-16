@@ -8,12 +8,8 @@ import { SelectInput } from '../inputs/SelectInput';
 import { CheckInput } from '../inputs/CheckInput';
 import { RadioInput } from '../inputs/RadioInput';
 import { FileInput } from '../inputs/FileInput';
-import { FormProduct } from '../Forms';
-
-interface ComponentProps {
-  updateCards: React.Dispatch<React.SetStateAction<FormProduct[]>>;
-  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { useAppDispatch } from '../../../store/hooks';
+import { addCard, setModalOpen } from '../../../store/slice/formSlice';
 
 export interface FormInputs {
   date: string;
@@ -25,7 +21,9 @@ export interface FormInputs {
   price: string;
 }
 
-export const FormItem = (props: ComponentProps) => {
+export const FormItem = () => {
+  const dispatch = useAppDispatch();
+
   const {
     register,
     formState: { errors },
@@ -37,18 +35,8 @@ export const FormItem = (props: ComponentProps) => {
   });
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    const card = {
-      date: data.date,
-      category: data.category,
-      image: URL.createObjectURL(data.image[0]),
-      title: data.title,
-      norobot: data.norobot,
-      sale: data.sale,
-      price: data.price,
-    };
-
-    props.updateCards((cards) => [...cards, card]);
-    props.closeModal(true);
+    dispatch(addCard(data));
+    dispatch(setModalOpen());
     reset();
   };
 

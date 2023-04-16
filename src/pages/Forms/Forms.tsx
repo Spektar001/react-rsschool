@@ -1,29 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Forms.css';
 import { FormItems } from './Form-item/FormItems';
 import { FormItem } from './Form-item/FormItem';
 import { SubmitModal } from './SubmitModal/SubmitModal';
-
-export interface FormProduct {
-  date: string;
-  category: string;
-  image: string | false;
-  title: string;
-  norobot: boolean;
-  sale: string;
-  price: string;
-}
+import { useAppSelector } from '../../store/hooks';
 
 export const Forms = () => {
-  const [cards, setCards] = useState<FormProduct[]>([]);
-  const [modal, setModal] = useState(false);
+  const cards = useAppSelector((state) => state.formSlice.form);
 
   return (
     <div className="flex">
-      <FormItem updateCards={setCards} closeModal={setModal} />
-      <SubmitModal isOpen={modal} closeModal={setModal} />
+      <FormItem />
+      <SubmitModal />
       {cards.length > 0 ? (
-        <FormItems cards={cards} />
+        <FormItems />
       ) : (
         <p
           style={{
