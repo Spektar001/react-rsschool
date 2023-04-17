@@ -1,0 +1,79 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cards__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 5px 0 gray;
+  padding: 15px;
+  width: 300px;
+  height: auto;
+}
+
+.cards__date {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.cards__category {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: white;
+  background-color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+  border-radius: 3px;
+  padding: 1%;
+  text-align: center;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.cards__img {
+  height: 200px;
+  width: 180px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cards__title {
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.cards__not-robot {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.cards__sale {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.cards__price {
+  display: flex;
+  text-align: center;
+  gap: 5px;
+}
+
+.cards__price_sale {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.cards__price_nosale {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-decoration: line-through;
+}

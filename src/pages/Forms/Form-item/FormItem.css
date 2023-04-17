@@ -1,0 +1,66 @@
+.field {
+  display: flex;
+  align-items: center;
+}
+
+.form__title {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #174F94;
+  text-align: center;
+}
+
+.form__name-prod {
+  border-radius: 5px;
+  border: 1px solid #D0CFCE;
+  padding: 3px 10px;
+  margin-left: 10px;
+}
+
+.form__price {
+  border-bottom: 1px solid #D0CFCE;
+  width: 50px;
+  padding-right: 3px;
+  margin-left: 10px;
+}
+
+.form__date {
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 1px solid #D0CFCE;
+  padding: 3px;
+}
+
+.form__category {
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 1px solid #D0CFCE;
+}
+
+.form__not-robot {
+  margin-left: 10px;
+}
+
+.form__img {
+  margin-left: 10px;
+}
+
+.form__btn {
+font-size: 1.5rem;
+font-weight: 700;
+background-color: #164f94;
+color: white;
+text-transform: uppercase;
+padding: 6px 15px;
+border-radius: 5px;
+margin-top: 10px;
+}
+.form__btn:hover {
+  background-color: #3b8df1;
+}
+
+.invalidText {
+  color: red;
+  margin-left: 5px;
+}
