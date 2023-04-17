@@ -98,7 +98,7 @@ describe('Button FORMS', () => {
 const search = vi.fn();
 describe('Search tests', function () {
   test('should set search by pressing Enter key', () => {
-    render(<Search setSearch={search} />);
+    render(<Search />);
 
     const input = screen.getByTestId('search') as HTMLInputElement;
     fireEvent.keyDown(input, { key: 'Enter', code: 13, charCode: 13 });
@@ -108,7 +108,7 @@ describe('Search tests', function () {
 const formModalClose = vi.fn();
 describe('Form modal', function () {
   test('Form modal render and close', async () => {
-    render(<SubmitModal closeModal={formModalClose} isOpen={true} />);
+    render(<SubmitModal />);
     const button = screen.getByRole('formModalClose');
     expect(button).toBeInTheDocument();
     userEvent.click(button);
@@ -118,7 +118,7 @@ describe('Form modal', function () {
 const homeModalProductsOpen = vi.fn();
 describe('Products tests', function () {
   test('Product render', () => {
-    render(<Product product={testItems[0]} openModal={homeModalProductsOpen} />);
+    render(<Product product={testItems[0]} />);
 
     const button = screen.getByRole('openModal');
     expect(button).toBeInTheDocument();
@@ -130,12 +130,7 @@ const homeModalClose = vi.fn();
 describe('Home modal', function () {
   test('Home modal render and button close', async () => {
     render(
-      <HomeModal
-        closeModal={homeModalClose}
-        setModalItemOpen={true}
-        pendingModal={false}
-        modalItem={testItems[0]}
-      />
+      <HomeModal />
     );
 
     const button = screen.getByRole('homeModalClose');
@@ -147,12 +142,7 @@ describe('Home modal', function () {
 describe('Home modal', function () {
   test('Home modal render and background close', async () => {
     render(
-      <HomeModal
-        closeModal={homeModalClose}
-        setModalItemOpen={true}
-        pendingModal={false}
-        modalItem={testItems[0]}
-      />
+      <HomeModal />
     );
 
     const button = screen.getByRole('backgroundClose');
@@ -164,12 +154,7 @@ describe('Home modal', function () {
 describe('Home modal', function () {
   test('Home modal contains name and alt_description', async () => {
     render(
-      <HomeModal
-        closeModal={homeModalClose}
-        setModalItemOpen={true}
-        pendingModal={false}
-        modalItem={testItems[0]}
-      />
+      <HomeModal />
     );
 
     expect(screen.getByText(`${testItems[0].alt_description}`)).toBeInTheDocument();
@@ -200,7 +185,7 @@ const testCardsItems = [
 
 describe('CardsItems tests', function () {
   test('render CardsItems', () => {
-    render(<FormItems cards={testCardsItems} />);
+    render(<FormItems />);
 
     const cards = screen.getAllByRole('form');
     expect(cards).toHaveLength(testCardsItems.length);

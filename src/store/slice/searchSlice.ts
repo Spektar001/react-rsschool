@@ -6,7 +6,7 @@ interface SearchState {
 }
 
 const initialState: SearchState = {
-  value: '',
+  value: 'los angeles',
   searchInputvalue: '',
 };
 
